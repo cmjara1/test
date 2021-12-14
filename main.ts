@@ -1,10 +1,18 @@
+function check_life () {
+    if (projectile.isHittingTile(CollisionDirection.Bottom)) {
+        mySprite.sayText(":)")
+        projectile.destroy()
+        info.changeLifeBy(-1)
+    }
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     info.changeScoreBy(1)
     projectile.destroy(effects.disintegrate, 500)
 })
 let mySprite2: Sprite = null
 let projectile: Sprite = null
-let mySprite = sprites.create(img`
+let mySprite: Sprite = null
+mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . b 5 b . . . 
     . . . . . . . . . b 5 b . . . . 
@@ -26,7 +34,7 @@ while (Math.percentChance(50)) {
     music.playMelody("E B C5 A B G A F ", 120)
 }
 let MAGICWORD = game.askForString("what is the magic word?")
-if (MAGICWORD == "expulso" || MAGICWORD == "******") {
+if (MAGICWORD == "a" || MAGICWORD == "******") {
     game.splash("Login Successful")
     info.setScore(0)
     info.setLife(3)
@@ -68,12 +76,11 @@ if (MAGICWORD == "expulso" || MAGICWORD == "******") {
         `, SpriteKind.Player)
     mySprite2.setPosition(76, 111)
     controller.moveSprite(mySprite2, 100, 0)
-    if (projectile.y >= 110) {
-        projectile.destroy()
-        info.changeLifeBy(-1)
-    }
 } else {
     if (true) {
         game.splash("Login Failed!!")
     }
 }
+game.onUpdateInterval(10, function () {
+    check_life()
+})
