@@ -16,3 +16,14 @@ let mySprite = sprites.create(img`
     . . c b d d d d d 5 5 5 b b . . 
     . . . c c c c c c c c b b . . . 
     `, SpriteKind.Player)
+while (Math.percentChance(50)) {
+    music.playMelody("E B C5 A B G A F ", 120)
+}
+let MAGICWORD = game.askForString("what is the magic word?")
+if (MAGICWORD == "expulso" || MAGICWORD == "******") {
+    game.splash("Login Successful")
+} else {
+    if (true) {
+        game.splash("Login Failed!!")
+    }
+}

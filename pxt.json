@@ -2,7 +2,8 @@
     "name": "Collaborative Coding - U5 Formative #2",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "darts": "*"
     },
     "files": [
         "main.blocks",
